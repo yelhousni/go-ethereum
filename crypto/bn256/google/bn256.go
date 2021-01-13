@@ -405,6 +405,13 @@ func Pair(g1 *G1, g2 *G2) *GT {
 	return &GT{optimalAte(g2.p, g1.p, new(bnPool))}
 }
 
+// Miller applies Miller's algorithm, which is a bilinear function from the
+// source groups to F_p^12. Miller(g1, g2).Finalize() is equivalent to Pair(g1,
+// g2).
+func Miller(g1 *G1, g2 *G2) *GT {
+	return &GT{miller(g2.p, g1.p, new(bnPool))}
+}
+
 // PairingCheck calculates the Optimal Ate pairing for a set of points.
 func PairingCheck(a []*G1, b []*G2) bool {
 	pool := new(bnPool)

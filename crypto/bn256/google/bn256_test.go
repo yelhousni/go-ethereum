@@ -309,3 +309,9 @@ func BenchmarkPairing(b *testing.B) {
 		Pair(&G1{curveGen}, &G2{twistGen})
 	}
 }
+
+func BenchmarkMillerLoop(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Miller(&G1{curveGen}, &G2{twistGen})
+	}
+}
